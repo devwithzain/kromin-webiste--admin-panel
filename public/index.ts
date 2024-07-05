@@ -1,0 +1,1 @@
+export { default as onlyLogo } from './only-logo.png';

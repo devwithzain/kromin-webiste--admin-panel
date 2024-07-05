@@ -1,0 +1,69 @@
+"use client";
+import Button from "./Button";
+import { TModalProps } from "@/types";
+import { useCallback, useEffect, useState } from "react";
+
+export default function Modal({
+	onSubmit,
+	body,
+	actionLabel,
+	footer,
+	disabled,
+	secondaryAction,
+	secondaryActionLabel,
+}: TModalProps) {
+	const handleClose = useCallback(() => {
+		if (disabled) {
+			return;
+		}
+	}, [disabled]);
+
+	const handleSubmit = useCallback(() => {
+		if (disabled) {
+			return;
+		}
+
+		onSubmit();
+	}, [onSubmit, disabled]);
+
+	const handleSecondaryAction = useCallback(() => {
+		if (disabled || !secondaryAction) {
+			return;
+		}
+
+		secondaryAction();
+	}, [secondaryAction, disabled]);
+
+	return (
+		<>
+			<div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none bg-neutral-800/70">
+				<div className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto lg:h-auto md:h-auto">
+					<div className="translate duration-300">
+						<div className="translate lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+							{/*body*/}
+							<div className="relative p-6 flex-auto">{body}</div>
+							<div className="flex flex-col gap-2 p-6">
+								<div className="flex flex-row items-center gap-4 w-full">
+									{secondaryAction && secondaryActionLabel && (
+										<Button
+											disabled={disabled}
+											label={secondaryActionLabel}
+											onClick={handleSecondaryAction}
+											outline
+										/>
+									)}
+									<Button
+										disabled={disabled}
+										label={actionLabel}
+										onClick={handleSubmit}
+									/>
+								</div>
+								{footer}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</>
+	);
+}
