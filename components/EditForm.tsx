@@ -5,19 +5,30 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TproductData, productSchema } from "@/types";
+import ImageUpload from "./ImageUpload";
+import { useState } from "react";
 
 export default function EditForm({ response }: any) {
 	const router = useRouter();
+	const [imageUrl, setImageUrl] = useState("");
+
+	const onImageUpload = (url: string) => {
+		setImageUrl(url);
+		setValue("imageUrl", url);
+	};
+
 	const {
 		register,
 		reset,
 		handleSubmit,
+		setValue,
 		formState: { isSubmitting, errors },
 	} = useForm<TproductData>({
 		resolver: zodResolver(productSchema),
 		defaultValues: {
 			title: response?.title || "",
 			description: response?.description || "",
+			imageUrl: response?.imageUrl || "",
 		},
 	});
 
@@ -70,6 +81,7 @@ export default function EditForm({ response }: any) {
 							<span className="text-red-500">{errors.description.message}</span>
 						)}
 					</div>
+					<ImageUpload onImageUpload={onImageUpload} />
 					<input
 						type="submit"
 						className="text-[20px] cursor-pointer text-black font-serif font-medium bg-slate-200 px-6 py-3 rounded-lg"

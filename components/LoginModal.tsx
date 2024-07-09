@@ -1,15 +1,13 @@
 "use client";
+import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import useLoginModal from "@/hooks/useLoginModal";
 import { Heading, Input, Modal } from "@/components";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 export default function LoginModal() {
 	const router = useRouter();
-	const loginModal = useLoginModal();
 	const [isLoading, setIsLoading] = useState(false);
 
 	const {

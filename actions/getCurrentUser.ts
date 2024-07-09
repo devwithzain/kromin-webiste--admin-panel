@@ -1,14 +1,9 @@
+import { auth } from "@/auth";
 import prisma from "@/db/prisma";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-export async function getSession() {
-   return await getServerSession(authOptions);
-}
-
-export default async function getCurrentUser() {
+export default async function GetCurrentUser() {
    try {
-      const session = await getSession();
+      const session = await auth();
 
       if (!session?.user?.email) {
          return null;

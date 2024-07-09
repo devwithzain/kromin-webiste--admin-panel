@@ -1,5 +1,5 @@
 "use client";
-import { TMenuItemProps } from "@types";
+import { TMenuItemProps } from "@/types";
 
 export default function MenuItem({ onClick, label, icon }: TMenuItemProps) {
 	return (

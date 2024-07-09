@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import type { Metadata } from "next";
 import ToasterProvider from "@/provider/ToastProvide";
+import Providers from "@/provider/provider";
 
 export const metadata: Metadata = {
 	title: "Kromin Admin Panel",
@@ -14,8 +15,10 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
-				<ToasterProvider />
-				{children}
+				<Providers>
+					<ToasterProvider />
+					{children}
+				</Providers>
 			</body>
 		</html>
 	);

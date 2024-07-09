@@ -2,17 +2,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { getData } from "@/actions/getData";
-import getCurrentUser from "@/actions/getCurrentUser";
+import GetCurrentUser from "@/actions/getCurrentUser";
 import { AdminNavbar, EditButton, DeleteButton } from "@/components";
 
 export default async function Admins() {
-	const currentUser = await getCurrentUser();
+	const currentUser = await GetCurrentUser();
 	if (!currentUser) {
 		redirect("/");
 	}
 	const response = await getData();
 	return (
 		<div className="w-full min-h-screen">
+			{/* @ts-ignore */}
 			<AdminNavbar currentUser={currentUser} />
 			<div className="w-full gap-4 flex flex-col padding-x pt-10">
 				<div className="w-full flex justify-between items-center gap-4">

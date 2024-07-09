@@ -1,7 +1,7 @@
-import getCurrentUser from "@/actions/getCurrentUser";
+import GetCurrentUser from "@/actions/getCurrentUser";
 
 export default async function UserProfile() {
-	const user = await getCurrentUser();
+	const user = await GetCurrentUser();
 	return (
 		<div className="w-full h-screen bg-white">
 			<p>{user?.currentUser.id}</p>
