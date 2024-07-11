@@ -7,6 +7,7 @@ export const productSchema = z.object({
    title: z.string().min(3),
    description: z.string().min(10),
    imageUrl: z.string().optional(),
+   mediaUrl: z.string().url("Invalid URL").optional(),
 });
 
 export type THeadingProps = {
