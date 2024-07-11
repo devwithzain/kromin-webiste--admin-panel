@@ -10,11 +10,11 @@ import { useState } from "react";
 
 export default function EditForm({ response }: any) {
 	const router = useRouter();
-	const [imageUrl, setImageUrl] = useState(response?.imageUrl || "");
+	const [videoUrl, setVideoUrl] = useState(response?.videoUrl || "");
 
 	const onImageUpload = (url: string) => {
-		setImageUrl(url);
-		setValue("imageUrl", url);
+		setVideoUrl(url);
+		setValue("videoUrl", url);
 	};
 
 	const {
@@ -28,13 +28,13 @@ export default function EditForm({ response }: any) {
 		defaultValues: {
 			title: response?.title || "",
 			description: response?.description || "",
-			imageUrl: response?.imageUrl || "",
+			videoUrl: response?.videoUrl || "",
 		},
 	});
 
 	const onSubmits = async (data: TproductData) => {
 		try {
-			await axios.patch(`/api/post/${response.id}`, data);
+			await axios.patch(`/api/process/${response.id}`, data);
 			toast.success("Updated Services");
 		} catch (error: any) {
 			toast.error("Error updating service");

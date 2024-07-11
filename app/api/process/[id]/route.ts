@@ -4,15 +4,16 @@ import { NextResponse } from "next/server";
 export async function PATCH(request: Request, { params }: { params: { id: string; }; }) {
 	try {
 		const body = await request.json();
-		const { title, description } = body;
+		const { title, description, videoUrl } = body;
 
-		const post = await prisma.service.update({
+		const post = await prisma.process.update({
 			where: {
 				id: params.id,
 			},
 			data: {
 				title,
 				description,
+				videoUrl
 			},
 		});
 

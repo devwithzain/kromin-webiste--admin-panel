@@ -7,7 +7,7 @@ export const productSchema = z.object({
    title: z.string().min(3),
    description: z.string().min(10),
    imageUrl: z.string().optional(),
-   mediaUrl: z.string().url("Invalid URL").optional(),
+   videoUrl: z.string().optional(),
 });
 
 export type THeadingProps = {
@@ -68,14 +68,7 @@ export type TMenuItemProps = {
    label: string;
    icon?: IconType | any;
 };
-export type SafeUser = Omit<
-   User,
-   "createdAt" | "updatedAt" | "emailVerified"
-> & {
-   createdAt: string;
-   updatedAt: string;
-   emailVerified: string | null;
-};
+
 export type TUserMenuProps = {
    currentUser?: User | null;
 };
@@ -88,10 +81,6 @@ export type TNavbarProps = {
    currentUser?: User | null;
 };
 
-export type TImageUploadProps = {
-   onChange: (value: string) => void;
-   value: string;
-};
 export type TimageUploadProps = {
    onImageUpload: (url: string) => void;
 };

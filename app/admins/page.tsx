@@ -81,6 +81,7 @@ export default async function Admins() {
 													<EditButton
 														id={item.id}
 														path="/api/post"
+														url="post"
 													/>
 													<DeleteButton
 														id={item.id}
@@ -158,6 +159,7 @@ export default async function Admins() {
 													<EditButton
 														id={item.id}
 														path="/api/process"
+														url="process"
 													/>
 													<DeleteButton
 														id={item.id}
