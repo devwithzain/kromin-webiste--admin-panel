@@ -8,7 +8,7 @@ body::-webkit-scrollbar {
 
 body {
 	overflow-x: hidden;
-	background-color: #1d0f41;
+	background-color: #ffffff;
 }
 
 @layer utilities {
