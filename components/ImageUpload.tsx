@@ -13,13 +13,15 @@ declare global {
 	var cloudinary: any;
 }
 
-export default function ImageUpload({ onImageUpload }: TimageUploadProps) {
-	const [imageUrl, setImageUrl] = useState("");
+export default function MediaUpload({ onImageUpload }: TimageUploadProps) {
+	const [mediaUrl, setMediaUrl] = useState("");
+	const [mediaType, setMediaType] = useState("");
 
-	const handleImageChange = (result: CloudinaryUploadWidgetResults) => {
+	const handleMediaChange = (result: CloudinaryUploadWidgetResults) => {
 		if (typeof result === "object" && "info" in result) {
 			const info = result.info as CloudinaryUploadWidgetInfo;
-			setImageUrl(info.secure_url);
+			setMediaUrl(info.secure_url);
+			setMediaType(info.resource_type);
 			onImageUpload(info.secure_url);
 		}
 	};
@@ -27,10 +29,11 @@ export default function ImageUpload({ onImageUpload }: TimageUploadProps) {
 	return (
 		<>
 			<CldUploadWidget
-				onSuccess={handleImageChange}
+				onSuccess={handleMediaChange}
 				uploadPreset="jdz0tunu"
 				options={{
 					maxFiles: 1,
+					resourceType: "auto",
 				}}>
 				{({ open }) => {
 					return (
@@ -43,14 +46,27 @@ export default function ImageUpload({ onImageUpload }: TimageUploadProps) {
 					);
 				}}
 			</CldUploadWidget>
-			{imageUrl && (
+			{mediaUrl && (
 				<div>
-					<Image
-						src={imageUrl}
-						alt="Uploaded"
-						width={400}
-						height={400}
-					/>
+					{mediaType === "image" && (
+						<Image
+							src={mediaUrl}
+							alt="Uploaded"
+							width={400}
+							height={400}
+						/>
+					)}
+					{mediaType === "video" && (
+						<video
+							controls
+							width="400">
+							<source
+								src={mediaUrl}
+								type="video/mp4"
+							/>
+							Your browser does not support the video tag.
+						</video>
+					)}
 				</div>
 			)}
 		</>
