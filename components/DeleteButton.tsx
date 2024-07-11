@@ -4,11 +4,11 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-export default function DeleteButton({ id }: { id: any }) {
+export default function DeleteButton({ id, path }: { id: any; path: string }) {
 	const router = useRouter();
 	const deletePost = async (id: any) => {
 		try {
-			await axios.delete("/api/post", {
+			await axios.delete(`${path}`, {
 				data: {
 					id,
 				},
@@ -24,7 +24,7 @@ export default function DeleteButton({ id }: { id: any }) {
 	return (
 		<Link
 			href=""
-			className="text-[15px] cursor-pointer text-black font-serif font-medium bg-slate-200 px-6 py-3 rounded-lg"
+			className="text-[16px] cursor-pointer font-serif font-medium bg-[#081226] text-white px-4 py-2 rounded-lg"
 			onClick={() => deletePost(id)}>
 			Delete
 		</Link>

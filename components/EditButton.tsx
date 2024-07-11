@@ -2,10 +2,10 @@
 import axios from "axios";
 import Link from "next/link";
 
-export default function EditButton({ id }: { id: any }) {
+export default function EditButton({ id, path }: { id: any; path: string }) {
 	const editPost = async (id: any) => {
 		try {
-			await axios.patch(`/api/post/${id}`, {
+			await axios.patch(`${path}/${id}`, {
 				data: {
 					id,
 				},
@@ -19,7 +19,7 @@ export default function EditButton({ id }: { id: any }) {
 		<Link
 			onClick={() => editPost(id)}
 			href={`/admins/product/${id}`}
-			className="text-[15px] cursor-pointer text-black font-serif font-medium bg-slate-200 px-6 py-3 rounded-lg">
+			className="text-[16px] cursor-pointer font-serif font-medium bg-[#081226] text-white px-4 py-2 rounded-lg">
 			Edit
 		</Link>
 	);
