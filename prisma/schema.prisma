@@ -24,3 +24,10 @@ model Service {
   description String
   imageUrl    String?
 }
+
+model Process {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  videoUrl    String?
+}

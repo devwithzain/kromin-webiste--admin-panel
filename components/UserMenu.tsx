@@ -5,9 +5,9 @@ import { LuLogOut } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 import { CiSettings } from "react-icons/ci";
 import { useCallback, useState } from "react";
-import { AiOutlineMenu } from "react-icons/ai";
 import { MenuItem, Avatar } from "@/components";
 import toast from "react-hot-toast";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 export default function UserMenu({ currentUser }: TUserMenuProps) {
 	const router = useRouter();
@@ -21,17 +21,19 @@ export default function UserMenu({ currentUser }: TUserMenuProps) {
 		signOut({ callbackUrl: "/" });
 		toast.success("Logout");
 	};
-
 	return (
 		<div className="relative">
-			<div className="flex flex-row items-center gap-3">
+			<div className="flex items-center gap-2">
+				<div className="">
+					<Avatar src={currentUser?.image} />
+				</div>
+				<h1 className="text-[18px] font-medium text-[#081226]">Zain Ali</h1>
 				<div
 					onClick={toggleOpen}
-					className="p-4 text-white md:py-1 md:px-2 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition">
-					<div className="">
-						<Avatar src={currentUser?.image} />
-					</div>
-					<AiOutlineMenu size={25} />
+					className={`cursor-pointer transition-all duration-200 ease-linear ${
+						isOpen ? "rotate-180" : "rotate-0"
+					}`}>
+					<MdOutlineKeyboardArrowDown size={30} />
 				</div>
 			</div>
 			{isOpen && (
