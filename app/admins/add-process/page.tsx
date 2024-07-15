@@ -9,7 +9,7 @@ import { TproductData, productSchema } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function AddProduct() {
-	const [mediaUrl, setMediaUrl] = useState("");
+	const [videoUrl, setVideoUrl] = useState("");
 
 	const router = useRouter();
 	const {
@@ -23,12 +23,12 @@ export default function AddProduct() {
 	});
 
 	const onMediaUpload = (url: string) => {
-		setMediaUrl(url);
-		setValue("mediaUrl", url);
+		setVideoUrl(url);
+		setValue("videoUrl", url);
 	};
 
 	const onSubmits = async (data: TproductData) => {
-		data.mediaUrl = mediaUrl;
+		data.videoUrl = videoUrl;
 		try {
 			await axios.post("/api/process", data);
 			toast.success("Added Process");
