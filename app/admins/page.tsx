@@ -16,7 +16,7 @@ export default async function Admins() {
 		<>
 			<div className="w-full p-4 flex gap-2">
 				<Sidebar />
-				<div className="w-full h-full">
+				<div className="w-[85%] h-full ml-auto">
 					{/* @ts-ignore */}
 					<AdminNavbar currentUser={currentUser} />
 					<div className="gap-4 flex flex-col px-6">

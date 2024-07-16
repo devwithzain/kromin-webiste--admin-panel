@@ -1,3 +1,4 @@
+"use client";
 import { GoHome } from "react-icons/go";
 import Logo from "./Logo";
 import { GrServices } from "react-icons/gr";
@@ -11,10 +12,12 @@ import {
 import { LuContact } from "react-icons/lu";
 import { BiStoreAlt, BiSupport } from "react-icons/bi";
 import { FiLogOut } from "react-icons/fi";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar() {
+	const router = useRouter();
 	return (
-		<div className="w-[15%] rounded-lg bg-[#F7F7F7] py-6 px-4 h-[98vh] sticky top-3">
+		<div className="w-[15%] rounded-lg bg-[#F7F7F7] py-6 px-4 h-[97%] fixed">
 			<div className="flex flex-col gap-2">
 				<Logo />
 				<hr className="bg-black text-black w-full" />
@@ -113,7 +116,9 @@ export default function Sidebar() {
 							<h1 className="group-hover:text-white text-[#081226]">Support</h1>
 						</div>
 					</div>
-					<div className="group transition-all duration-200 ease-linear">
+					<div
+						className="group transition-all duration-200 ease-linear"
+						onClick={() => router.push("/user-profile")}>
 						<div className="transition-all duration-200 ease-linear py-2 px-4 rounded-lg cursor-pointer w-full flex items-center gap-2 group-hover:bg-[#081226]">
 							<MdOutlineSettings
 								size={22}
