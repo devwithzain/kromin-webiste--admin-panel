@@ -4,10 +4,17 @@ import { IconType } from "react-icons";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 export const productSchema = z.object({
-   title: z.string().min(3),
-   description: z.string().min(10),
+   title: z.string(),
+   description: z.string(),
    imageUrl: z.string().optional(),
    videoUrl: z.string().optional(),
+});
+
+export const servicePageSchema = z.object({
+   title: z.string(),
+   listOne: z.string().optional(),
+   listTwo: z.string().optional(),
+   description: z.string(),
 });
 
 export type THeadingProps = {
@@ -54,6 +61,7 @@ export type ThooksProps = {
 };
 
 export type TproductData = z.infer<typeof productSchema>;
+export type TservicePageData = z.infer<typeof servicePageSchema>;
 
 export type TlogoMarqueeProps = {
    children: React.ReactNode;

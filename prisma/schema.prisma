@@ -31,3 +31,11 @@ model Process {
   description String
   videoUrl    String?
 }
+
+model ServicePage {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  listOne     String?
+  listTwo     String?
+  description String
+}
