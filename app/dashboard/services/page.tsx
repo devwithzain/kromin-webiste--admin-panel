@@ -88,7 +88,7 @@ export default async function Service() {
 													<EditButton
 														id={item.id}
 														path="/api/services"
-														url="post"
+														url="services"
 													/>
 													<DeleteButton
 														id={item.id}
