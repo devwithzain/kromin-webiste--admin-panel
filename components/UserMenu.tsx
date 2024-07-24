@@ -43,7 +43,7 @@ export default function UserMenu({ currentUser }: TUserMenuProps) {
 							<>
 								<MenuItem
 									label="Setting"
-									onClick={() => router.push("/admins/user-profile")}
+									onClick={() => router.push("/dashboard/user-profile")}
 									icon={<CiSettings size={20} />}
 								/>
 								<hr />

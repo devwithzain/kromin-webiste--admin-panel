@@ -26,7 +26,7 @@ export default function EditButton({
 	return (
 		<Link
 			onClick={() => editPost(id)}
-			href={`/admins/${url}/${id}`}
+			href={`/dashboard/${url}/${id}`}
 			className="text-[16px] cursor-pointer font-serif font-medium bg-[#081226] text-white px-4 py-2 rounded-lg">
 			Edit
 		</Link>

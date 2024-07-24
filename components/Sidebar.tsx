@@ -13,6 +13,7 @@ import { LuContact } from "react-icons/lu";
 import { BiStoreAlt, BiSupport } from "react-icons/bi";
 import { FiLogOut } from "react-icons/fi";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Sidebar() {
 	const router = useRouter();
@@ -46,7 +47,9 @@ export default function Sidebar() {
 						</div>
 					</div>
 					<div className="group transition-all duration-200 ease-linear">
-						<div className="transition-all duration-200 ease-linear py-2 px-4 rounded-lg cursor-pointer w-full flex items-center gap-2 group-hover:bg-[#081226]">
+						<Link
+							href="/dashboard/services"
+							className="transition-all duration-200 ease-linear py-2 px-4 rounded-lg cursor-pointer w-full flex items-center gap-2 group-hover:bg-[#081226]">
 							<GrServices
 								size={22}
 								className="group-hover:text-white text-[#081226]"
@@ -54,7 +57,7 @@ export default function Sidebar() {
 							<h1 className="group-hover:text-white text-[#081226]">
 								Services
 							</h1>
-						</div>
+						</Link>
 					</div>
 					<div className="group transition-all duration-200 ease-linear">
 						<div className="transition-all duration-200 ease-linear py-2 px-4 rounded-lg cursor-pointer w-full flex items-center gap-2 group-hover:bg-[#081226]">

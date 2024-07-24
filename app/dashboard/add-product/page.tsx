@@ -1,22 +1,17 @@
 "use client";
 import axios from "axios";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
+import { ImageUpload } from "@/components";
 import { useRouter } from "next/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { TproductData, productSchema } from "@/types";
-import ImageUpload from "./ImageUpload";
-import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-export default function EditForm({ response }: any) {
+export default function AddProduct() {
+	const [imageUrl, setImageUrl] = useState("");
+
 	const router = useRouter();
-	const [imageUrl, setImageUrl] = useState(response?.imageUrl || "");
-
-	const onImageUpload = (url: string) => {
-		setImageUrl(url);
-		setValue("imageUrl", url);
-	};
-
 	const {
 		register,
 		reset,
@@ -25,33 +20,36 @@ export default function EditForm({ response }: any) {
 		formState: { isSubmitting, errors },
 	} = useForm<TproductData>({
 		resolver: zodResolver(productSchema),
-		defaultValues: {
-			title: response?.title || "",
-			description: response?.description || "",
-			imageUrl: response?.imageUrl || "",
-		},
 	});
 
+	const onImageUpload = (url: string) => {
+		setImageUrl(url);
+		setValue("imageUrl", url);
+	};
+
 	const onSubmits = async (data: TproductData) => {
+		data.imageUrl = imageUrl;
 		try {
-			await axios.patch(`/api/post/${response.id}`, data);
-			toast.success("Updated Services");
+			await axios.post("/api/post", data);
 		} catch (error: any) {
-			toast.error("Error updating service");
+			toast.success("Error", error);
 		} finally {
+			toast.success("Added Services");
 			reset();
-			router.refresh();
 			router.push("/dashboard");
+			router.refresh();
 		}
-		console.log(data);
 	};
 
 	return (
-		<div className="w-full h-screen bg-white pt-10">
+		<div className="w-full h-screen bg-white p-10 flex flex-col gap-6">
 			<div className="w-full">
+				<h1 className="text-[40px] text-black font-serif font-medium">
+					Services Details
+				</h1>
 				<form
 					onSubmit={handleSubmit(onSubmits)}
-					className="w-full flex flex-col gap-4">
+					className="w-full flex items-center justify-between gap-4">
 					<div className="relative w-full flex flex-col gap-3">
 						<div>
 							<input
@@ -85,7 +83,8 @@ export default function EditForm({ response }: any) {
 					<ImageUpload onImageUpload={onImageUpload} />
 					<input
 						type="submit"
-						className="text-[20px] cursor-pointer text-black font-serif font-medium bg-slate-200 px-6 py-3 rounded-lg"
+						value={`${isSubmitting ? "Loading..." : "Submit"}`}
+						className="text-[20px] cursor-pointer text-black font-serif font-medium bg-white border-2 px-6 py-[18px] rounded-lg"
 						disabled={isSubmitting}
 					/>
 				</form>
