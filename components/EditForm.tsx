@@ -41,7 +41,7 @@ export default function EditForm({ response }: any) {
 		} finally {
 			reset();
 			router.refresh();
-			router.push("/dashboard");
+			router.push("/dashboard/home");
 		}
 		console.log(data);
 	};

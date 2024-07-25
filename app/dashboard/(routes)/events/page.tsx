@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { AdminNavbar, Sidebar } from "@/components";
 import GetCurrentUser from "@/actions/getCurrentUser";
 
-export default async function Dashboard() {
+export default async function Events() {
 	const currentUser = await GetCurrentUser();
 	if (!currentUser) {
 		redirect("/");
@@ -14,7 +14,7 @@ export default async function Dashboard() {
 				{/* @ts-ignore */}
 				<AdminNavbar currentUser={currentUser} />
 				<div className="px-6">
-					<h1>Dashboard</h1>
+					<h1>Events</h1>
 				</div>
 			</div>
 		</div>
