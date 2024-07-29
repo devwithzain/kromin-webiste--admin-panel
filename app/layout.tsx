@@ -1,11 +1,11 @@
 import "@/styles/globals.css";
 import type { Metadata } from "next";
-import ToasterProvider from "@/provider/ToastProvide";
 import Providers from "@/provider/provider";
+import ToasterProvider from "@/provider/ToastProvide";
 
 export const metadata: Metadata = {
-	title: "Kromin Admin Panel",
-	description: "Kromin Webiste Admin Panel",
+	title: "Kromin Website Admin Panel",
+	description: "Kromin Webiste Admin Panel by devwithzain",
 };
 export default function RootLayout({
 	children,
